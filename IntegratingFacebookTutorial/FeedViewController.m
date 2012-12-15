@@ -8,6 +8,7 @@
 
 #import "FeedViewController.h"
 #import "Constants.h"
+#import "FeedItemCell.h"
 
 @interface FeedViewController ()
 
@@ -71,7 +72,17 @@ NSMutableArray *feedItems;
     
     // Get feed items
     PFQuery *query = [PFQuery queryWithClassName:kFeedItemClassKey];
-    
+    [query whereKey:kFeedItemViewerKey equalTo:[[PFUser currentUser] objectForKey:kUserFacebookKey]];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            // Find succeeded
+            feedItems = [NSMutableArray arrayWithArray:objects];
+            [self.tableView reloadData];
+        } else {
+            // Failure
+            NSLog(@"Error :%@ %@", error, [error userInfo]);
+        }
+     }];
 }
 
 - (void)didReceiveMemoryWarning
@@ -91,22 +102,46 @@ NSMutableArray *feedItems;
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return _rowDataArray.count;
+    return feedItems.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"FeedCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    static NSString *CellIdentifier = @"FeedItemCell";
+    FeedItemCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     // Configure the cell...
     if (cell == nil) {
         // Create the cell and add the labels
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[FeedItemCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        [cell setSelectionStyle:UITableViewCellSelectionStyleGray];
     }
+
+    // Get feed
+    PFObject *feedItem = [feedItems objectAtIndex:indexPath.row];
+    PFObject *post = [feedItem objectForKey:kFeedItemPostKey];
+    // Get post
+    [post fetchIfNeededInBackgroundWithBlock:^(PFObject *post, NSError *error) {
+       // Get photo
+        PFObject *photo = [post objectForKey:kPostPhotoKey];
+        [photo fetchIfNeededInBackgroundWithBlock:^(PFObject *photo, NSError *error) {
+            // Get user
+            PFObject *user = [photo objectForKey:kPhotoOwnerKey];
+            [user fetchIfNeededInBackgroundWithBlock:^(PFObject *user, NSError *error) {
+                // Show info
+                cell.posterNameLabel.text = [user objectForKey:kUserNameKey];
+            }];
+            // Get image
+            PFFile *imageFile = [photo objectForKey:kPhotoImageKey];
+            [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+                // Show image
+                UIImage *image = [UIImage imageWithData:data];
+                [cell.feedPhotoImageView setImage:image];
+                [cell.feedPhotoImageView  setContentMode:UIViewContentModeScaleAspectFit];
+            }];
+        }];
+    }];
     
-    // Show feed data
-     
     return cell;
 }
 
@@ -116,7 +151,7 @@ NSMutableArray *feedItems;
 {
     // Navigation logic may go here. Create and push another view controller.
     /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
+     ; *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
      // ...
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];

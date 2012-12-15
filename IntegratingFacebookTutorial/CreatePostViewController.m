@@ -101,7 +101,7 @@ UIImage *image;
     cameraUI.allowsEditing = YES;
     cameraUI.delegate = self;
     
-    [self presentModalViewController:cameraUI animated:YES];
+    [self presentViewController:cameraUI animated:YES completion:NULL];
     
     return YES;
 }
@@ -109,11 +109,11 @@ UIImage *image;
 /** UIImagePickerDelegate **/
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-    [self dismissModalViewControllerAnimated:NO];
+    [self dismissViewControllerAnimated:YES completion:NULL];
     
     image = [info objectForKey:UIImagePickerControllerEditedImage];
     if (nil == photoImageView) {
@@ -260,13 +260,13 @@ UIImage *image;
     
     // Create a photo object
     PFObject *photo = [PFObject objectWithClassName:kPhotoClassKey];
-    [photo setObject:[[PFUser currentUser] objectForKey:kUserFacebookKey] forKey:kPhotoOwnerKey];
+    [photo setObject:[PFUser currentUser] forKey:kPhotoOwnerKey];
     [photo setObject:self.photoFile forKey:kPhotoImageKey];
     
     [photo saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         // Create post object
         PFObject *post = [PFObject objectWithClassName:kPostClassKey];
-        [post setObject:[[PFUser currentUser] objectForKey:kUserFacebookKey] forKey:kPostPosterKey];
+        [post setObject:[PFUser currentUser] forKey:kPostPosterKey];
         [post setObject:photo forKey:kPostPhotoKey];
         
         [post saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
@@ -282,6 +282,7 @@ UIImage *image;
                 [feedItem saveInBackground];
             }
         }];
+        [self.navigationController popViewControllerAnimated:YES];
     }];
 
 }
