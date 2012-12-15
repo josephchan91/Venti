@@ -7,12 +7,15 @@
 //
 
 #import "FeedViewController.h"
+#import "Constants.h"
 
 @interface FeedViewController ()
 
 @end
 
 @implementation FeedViewController
+
+NSMutableArray *feedItems;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -37,39 +40,37 @@
     UIBarButtonItem *logoutButton = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStyleBordered target:self action:@selector(logoutButtonTouchHandler:)];
     self.navigationItem.leftBarButtonItem = logoutButton;
  
-    // Set default values for the table row data
-    _rowDataArray = [NSMutableArray arrayWithObjects:@"N/A", @"N/A", nil];
-    
-    // Create request for user's facebook data
-    NSString *requestPath = @"me/?fields=name,birthday";
-    
-    // Send request to Facebook
-    PF_FBRequest *request = [PF_FBRequest requestForGraphPath:requestPath];
-    [request startWithCompletionHandler:^(PF_FBRequestConnection *connection, id result, NSError *error) {
-        // handle response
-        if (!error) {
-            // Parse the data received
-            NSDictionary *userData = (NSDictionary *)result;
-            NSString *facebookId = userData[@"id"];
-            NSString *name = userData[@"name"];
-            NSString *birthday = userData[@"birthday"];
-            
-            // Set received values if they are not nil and reload the table
-            [_rowDataArray replaceObjectAtIndex:0 withObject:name];
-            if (birthday) {
-                [_rowDataArray replaceObjectAtIndex:1 withObject:birthday];
+    // If this is the first time signing up, store the facebook id in the PFUser to avoid future requests
+    if (nil != [[PFUser currentUser] objectForKey:kUserFacebookKey]) {
+        NSLog(@"Current user has facebookId field");
+    }
+    else {
+        // Create request for user's facebook data
+        NSString *requestPath = @"me/?fields=id,name";
+        // Send request to Facebook
+        PF_FBRequest *request = [PF_FBRequest requestForGraphPath:requestPath];
+        [request startWithCompletionHandler:^(PF_FBRequestConnection *connection, id result, NSError *error) {
+            // handle response
+            if (!error) {
+                // Parse the data received
+                NSDictionary *userData = (NSDictionary *)result;
+                NSString *facebookId = userData[@"id"];
+                NSString *name = userData[@"name"];
+                [[PFUser currentUser] setObject:facebookId forKey:kUserFacebookKey];
+                [[PFUser currentUser] setObject:name forKey:kUserNameKey];
+                [[PFUser currentUser] saveInBackground];
+            } else if ([[[[error userInfo] objectForKey:@"error"] objectForKey:@"type"]
+                        isEqualToString: @"OAuthException"]) { // Since the request failed, we can check if it was due to an invalid session
+                NSLog(@"The facebook session was invalidated");
+                [self logoutButtonTouchHandler:nil];
+            } else {
+                NSLog(@"Some other error: %@", error);
             }
-            
-            [self.tableView reloadData];
-        } else if ([[[[error userInfo] objectForKey:@"error"] objectForKey:@"type"]
-                    isEqualToString: @"OAuthException"]) { // Since the request failed, we can check if it was due to an invalid session
-            NSLog(@"The facebook session was invalidated");
-            [self logoutButtonTouchHandler:nil];
-        } else {
-            NSLog(@"Some other error: %@", error);
-        }
-    }];
-
+        }];
+    }
+    
+    // Get feed items
+    PFQuery *query = [PFQuery queryWithClassName:kFeedItemClassKey];
     
 }
 
@@ -104,12 +105,8 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    // Cannot select these cells
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
-    // Display the data in the table
-    cell.textLabel.text = [_rowDataArray objectAtIndex:indexPath.row];
-    
+    // Show feed data
+     
     return cell;
 }
 

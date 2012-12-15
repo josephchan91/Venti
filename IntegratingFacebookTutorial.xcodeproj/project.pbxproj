@@ -10,6 +10,10 @@
 		9044BD64167B87CD008491E4 /* FeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9044BD63167B87CD008491E4 /* FeedViewController.m */; };
 		9044BD7A167BB626008491E4 /* glyphicons_150_edit.png in Resources */ = {isa = PBXBuildFile; fileRef = 9044BD79167BB626008491E4 /* glyphicons_150_edit.png */; };
 		9044BD7E167BB990008491E4 /* CreatePostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9044BD7D167BB990008491E4 /* CreatePostViewController.m */; };
+		9044BD8C167BC406008491E4 /* glyphicons_006_user_add.png in Resources */ = {isa = PBXBuildFile; fileRef = 9044BD8B167BC406008491E4 /* glyphicons_006_user_add.png */; };
+		9044BD8E167BC5F9008491E4 /* glyphicons_011_camera.png in Resources */ = {isa = PBXBuildFile; fileRef = 9044BD8D167BC5F9008491E4 /* glyphicons_011_camera.png */; };
+		9044BD92167BFBD3008491E4 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 9044BD91167BFBD3008491E4 /* Constants.m */; };
+		9044BD95167C311B008491E4 /* FeedItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9044BD94167C311B008491E4 /* FeedItemCell.m */; };
 		90D69EB8167B83A10022CB61 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90D69EB7167B83A10022CB61 /* Storyboard.storyboard */; };
 		C425016A161BBAE400474BCD /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4250166161BBAE400474BCD /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		C425016B161BBAE400474BCD /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4250167161BBAE400474BCD /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -46,6 +50,12 @@
 		9044BD79167BB626008491E4 /* glyphicons_150_edit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glyphicons_150_edit.png; sourceTree = "<group>"; };
 		9044BD7C167BB990008491E4 /* CreatePostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreatePostViewController.h; sourceTree = "<group>"; };
 		9044BD7D167BB990008491E4 /* CreatePostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreatePostViewController.m; sourceTree = "<group>"; };
+		9044BD8B167BC406008491E4 /* glyphicons_006_user_add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glyphicons_006_user_add.png; sourceTree = "<group>"; };
+		9044BD8D167BC5F9008491E4 /* glyphicons_011_camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glyphicons_011_camera.png; sourceTree = "<group>"; };
+		9044BD90167BFBD2008491E4 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		9044BD91167BFBD3008491E4 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
+		9044BD93167C311B008491E4 /* FeedItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedItemCell.h; sourceTree = "<group>"; };
+		9044BD94167C311B008491E4 /* FeedItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedItemCell.m; sourceTree = "<group>"; };
 		90D69EB7167B83A10022CB61 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		C4250166161BBAE400474BCD /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		C4250167161BBAE400474BCD /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
@@ -154,12 +164,16 @@
 				D4DA79FD14D3345A0055F672 /* AppDelegate.h */,
 				D4DA79FE14D3345A0055F672 /* AppDelegate.m */,
 				90D69EB7167B83A10022CB61 /* Storyboard.storyboard */,
+				9044BD90167BFBD2008491E4 /* Constants.h */,
+				9044BD91167BFBD3008491E4 /* Constants.m */,
 				D4DA7A7114D393DA0055F672 /* LoginViewController.h */,
 				D4DA7A7214D393DA0055F672 /* LoginViewController.m */,
 				9044BD62167B87CD008491E4 /* FeedViewController.h */,
 				9044BD63167B87CD008491E4 /* FeedViewController.m */,
 				9044BD7C167BB990008491E4 /* CreatePostViewController.h */,
 				9044BD7D167BB990008491E4 /* CreatePostViewController.m */,
+				9044BD93167C311B008491E4 /* FeedItemCell.h */,
+				9044BD94167C311B008491E4 /* FeedItemCell.m */,
 				D4DA79F514D3345A0055F672 /* Supporting Files */,
 			);
 			path = IntegratingFacebookTutorial;
@@ -168,6 +182,8 @@
 		D4DA79F514D3345A0055F672 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				9044BD8D167BC5F9008491E4 /* glyphicons_011_camera.png */,
+				9044BD8B167BC406008491E4 /* glyphicons_006_user_add.png */,
 				9044BD79167BB626008491E4 /* glyphicons_150_edit.png */,
 				C4CF27E2161E3BAA008AB8CC /* login-button-small-pressed.png */,
 				C4CF27E3161E3BAA008AB8CC /* login-button-small-pressed@2x.png */,
@@ -244,6 +260,8 @@
 				C4CF27E9161E3BAA008AB8CC /* login-button-small@2x.png in Resources */,
 				90D69EB8167B83A10022CB61 /* Storyboard.storyboard in Resources */,
 				9044BD7A167BB626008491E4 /* glyphicons_150_edit.png in Resources */,
+				9044BD8C167BC406008491E4 /* glyphicons_006_user_add.png in Resources */,
+				9044BD8E167BC5F9008491E4 /* glyphicons_011_camera.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,6 +277,8 @@
 				D4DA7A7414D393DA0055F672 /* LoginViewController.m in Sources */,
 				9044BD64167B87CD008491E4 /* FeedViewController.m in Sources */,
 				9044BD7E167BB990008491E4 /* CreatePostViewController.m in Sources */,
+				9044BD92167BFBD3008491E4 /* Constants.m in Sources */,
+				9044BD95167C311B008491E4 /* FeedItemCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -332,6 +352,7 @@
 				GCC_PREFIX_HEADER = "IntegratingFacebookTutorial/IntegratingFacebookTutorial-Prefix.pch";
 				INFOPLIST_FILE = "IntegratingFacebookTutorial/IntegratingFacebookTutorial-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -347,6 +368,7 @@
 				GCC_PREFIX_HEADER = "IntegratingFacebookTutorial/IntegratingFacebookTutorial-Prefix.pch";
 				INFOPLIST_FILE = "IntegratingFacebookTutorial/IntegratingFacebookTutorial-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
