@@ -15,6 +15,7 @@
 		9044BD92167BFBD3008491E4 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 9044BD91167BFBD3008491E4 /* Constants.m */; };
 		9044BD95167C311B008491E4 /* FeedItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9044BD94167C311B008491E4 /* FeedItemCell.m */; };
 		90D69EB8167B83A10022CB61 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90D69EB7167B83A10022CB61 /* Storyboard.storyboard */; };
+		90F8CB62167D4962008BC14B /* FeedItemDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90F8CB61167D4962008BC14B /* FeedItemDetailViewController.m */; };
 		C425016A161BBAE400474BCD /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4250166161BBAE400474BCD /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		C425016B161BBAE400474BCD /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4250167161BBAE400474BCD /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		C425016C161BBAE400474BCD /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C4250168161BBAE400474BCD /* libsqlite3.dylib */; };
@@ -57,6 +58,8 @@
 		9044BD93167C311B008491E4 /* FeedItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedItemCell.h; sourceTree = "<group>"; };
 		9044BD94167C311B008491E4 /* FeedItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedItemCell.m; sourceTree = "<group>"; };
 		90D69EB7167B83A10022CB61 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
+		90F8CB60167D4962008BC14B /* FeedItemDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedItemDetailViewController.h; sourceTree = "<group>"; };
+		90F8CB61167D4962008BC14B /* FeedItemDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedItemDetailViewController.m; sourceTree = "<group>"; };
 		C4250166161BBAE400474BCD /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		C4250167161BBAE400474BCD /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		C4250168161BBAE400474BCD /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
@@ -170,10 +173,12 @@
 				D4DA7A7214D393DA0055F672 /* LoginViewController.m */,
 				9044BD62167B87CD008491E4 /* FeedViewController.h */,
 				9044BD63167B87CD008491E4 /* FeedViewController.m */,
-				9044BD7C167BB990008491E4 /* CreatePostViewController.h */,
-				9044BD7D167BB990008491E4 /* CreatePostViewController.m */,
+				90F8CB60167D4962008BC14B /* FeedItemDetailViewController.h */,
+				90F8CB61167D4962008BC14B /* FeedItemDetailViewController.m */,
 				9044BD93167C311B008491E4 /* FeedItemCell.h */,
 				9044BD94167C311B008491E4 /* FeedItemCell.m */,
+				9044BD7C167BB990008491E4 /* CreatePostViewController.h */,
+				9044BD7D167BB990008491E4 /* CreatePostViewController.m */,
 				D4DA79F514D3345A0055F672 /* Supporting Files */,
 			);
 			path = IntegratingFacebookTutorial;
@@ -279,6 +284,7 @@
 				9044BD7E167BB990008491E4 /* CreatePostViewController.m in Sources */,
 				9044BD92167BFBD3008491E4 /* Constants.m in Sources */,
 				9044BD95167C311B008491E4 /* FeedItemCell.m in Sources */,
+				90F8CB62167D4962008BC14B /* FeedItemDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

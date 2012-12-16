@@ -257,33 +257,37 @@ UIImage *image;
     // JPEG to decrease file size and enable faster uploads & downloads
     NSData *imageData = UIImageJPEGRepresentation(image, 0.8f);
     self.photoFile = [PFFile fileWithData:imageData];
-    
-    // Create a photo object
-    PFObject *photo = [PFObject objectWithClassName:kPhotoClassKey];
-    [photo setObject:[PFUser currentUser] forKey:kPhotoOwnerKey];
-    [photo setObject:self.photoFile forKey:kPhotoImageKey];
-    
-    [photo saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        // Create post object
-        PFObject *post = [PFObject objectWithClassName:kPostClassKey];
-        [post setObject:[PFUser currentUser] forKey:kPostPosterKey];
-        [post setObject:photo forKey:kPostPhotoKey];
-        
-        [post saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            // Create the feed objects for all viewers
-            // Add self as viewer
-            [friendIds addObject:[[PFUser currentUser] objectForKey:kUserFacebookKey]];
-            NSEnumerator *e = [friendIds objectEnumerator];
-            NSString *object;
-            while (object = [e nextObject]) {
-                PFObject *feedItem = [PFObject objectWithClassName:kFeedItemClassKey];
-                [feedItem setObject:object forKey:kFeedItemViewerKey];
-                [feedItem setObject:post forKey:kFeedItemPostKey];
-                [feedItem saveInBackground];
-            }
-        }];
-        [self.navigationController popViewControllerAnimated:YES];
+    [self.photoFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (succeeded) {
+            // Create a photo object
+            PFObject *photo = [PFObject objectWithClassName:kPhotoClassKey];
+            [photo setObject:[PFUser currentUser] forKey:kPhotoOwnerKey];
+            [photo setObject:self.photoFile forKey:kPhotoImageKey];
+            [photo saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                // Create post object
+                PFObject *post = [PFObject objectWithClassName:kPostClassKey];
+                [post setObject:[PFUser currentUser] forKey:kPostPosterKey];
+                [post setObject:photo forKey:kPostPhotoKey];
+                [post saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                    // Create the feed objects for all viewers
+                    // Add self as viewer
+                    [friendIds addObject:[[PFUser currentUser] objectForKey:kUserFacebookKey]];
+                    NSEnumerator *e = [friendIds objectEnumerator];
+                    NSString *object;
+                    while (object = [e nextObject]) {
+                        PFObject *feedItem = [PFObject objectWithClassName:kFeedItemClassKey];
+                        [feedItem setObject:object forKey:kFeedItemViewerKey];
+                        [feedItem setObject:post forKey:kFeedItemPostKey];
+                        [feedItem saveInBackground];
+                    }
+                }];
+            }];
+        }
     }];
+    
+    
+    
+    [self.navigationController popViewControllerAnimated:YES];
 
 }
 

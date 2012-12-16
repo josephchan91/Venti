@@ -7,6 +7,7 @@
 //
 
 #import "FeedViewController.h"
+#import "FeedItemDetailViewController.h"
 #import "Constants.h"
 #import "FeedItemCell.h"
 
@@ -17,6 +18,8 @@
 @implementation FeedViewController
 
 NSMutableArray *feedItems;
+NSMutableData *imageData;
+NSString *facebookId;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -25,6 +28,13 @@ NSMutableArray *feedItems;
         // Custom initialization
     }
     return self;
+}
+
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self.tableView reloadData];
 }
 
 - (void)viewDidLoad
@@ -41,10 +51,11 @@ NSMutableArray *feedItems;
     UIBarButtonItem *logoutButton = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStyleBordered target:self action:@selector(logoutButtonTouchHandler:)];
     self.navigationItem.leftBarButtonItem = logoutButton;
  
-    // If this is the first time signing up, store the facebook id in the PFUser to avoid future requests
-    if (nil != [[PFUser currentUser] objectForKey:kUserFacebookKey]) {
-        NSLog(@"Current user has facebookId field");
+    if (nil != [[PFUser currentUser] objectForKey:kUserFacebookKey] && nil != [[PFUser currentUser] objectForKey:kUserPhotoKey]) {
+        [self reloadFeed];
+        return;
     }
+    // If this is the first time signing up, store the facebook id in the PFUser to avoid future requests
     else {
         // Create request for user's facebook data
         NSString *requestPath = @"me/?fields=id,name";
@@ -55,24 +66,78 @@ NSMutableArray *feedItems;
             if (!error) {
                 // Parse the data received
                 NSDictionary *userData = (NSDictionary *)result;
-                NSString *facebookId = userData[@"id"];
+                facebookId = userData[@"id"];
                 NSString *name = userData[@"name"];
+                
                 [[PFUser currentUser] setObject:facebookId forKey:kUserFacebookKey];
                 [[PFUser currentUser] setObject:name forKey:kUserNameKey];
-                [[PFUser currentUser] saveInBackground];
+                [[PFUser currentUser] saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                    // Get feed items
+                    if (succeeded) {
+                        [self getPhotoForFacebookId:facebookId];
+                    } else {
+                        NSLog(@"Error saving user details: %@", error);
+                    }
+                }];
+                
             } else if ([[[[error userInfo] objectForKey:@"error"] objectForKey:@"type"]
                         isEqualToString: @"OAuthException"]) { // Since the request failed, we can check if it was due to an invalid session
                 NSLog(@"The facebook session was invalidated");
                 [self logoutButtonTouchHandler:nil];
             } else {
-                NSLog(@"Some other error: %@", error);
+                NSLog(@"Some other erro: %@", error);
             }
         }];
     }
+}
+
+- (void)getPhotoForFacebookId:(NSString *)facebookId
+{
+    // Download the user's facebook profile picture
+    imageData = [[NSMutableData alloc] init]; // the data will be loaded in here
     
+    NSURL *pictureURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large&return_ssl_resources=1", facebookId]];
+    
+    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:pictureURL
+                                                              cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                          timeoutInterval:2.0f];
+    // Run network request asynchronously
+    NSURLConnection *urlConnection = [[NSURLConnection alloc] initWithRequest:urlRequest delegate:self];
+    if (!urlConnection) {
+        NSLog(@"Failed to download picture");
+    }
+}
+
+#pragma mark - NSURLConnectionDelegate methods
+/* Callback delegate methods used for downloading the user's profile picture */
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+    // As chuncks of the image are received, we build our data file
+    [imageData appendData:data];
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+    // All data has been downloaded, now we can set the image in the header image view
+    PFFile *imageFile = [PFFile fileWithData:imageData];
+    [imageFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        [[PFUser currentUser] setObject:imageFile forKey:kUserPhotoKey];
+        [[PFUser currentUser] saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if (succeeded) {
+                [self reloadFeed];
+            } else {
+                NSLog(@"Error saving user photo: %@", error);
+            }
+        }];
+    }];
+}
+
+
+- (void)reloadFeed
+{
     // Get feed items
     PFQuery *query = [PFQuery queryWithClassName:kFeedItemClassKey];
     [query whereKey:kFeedItemViewerKey equalTo:[[PFUser currentUser] objectForKey:kUserFacebookKey]];
+    [query orderByDescending:@"createdAt"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
             // Find succeeded
@@ -82,7 +147,7 @@ NSMutableArray *feedItems;
             // Failure
             NSLog(@"Error :%@ %@", error, [error userInfo]);
         }
-     }];
+    }];
 }
 
 - (void)didReceiveMemoryWarning
@@ -122,23 +187,49 @@ NSMutableArray *feedItems;
     PFObject *post = [feedItem objectForKey:kFeedItemPostKey];
     // Get post
     [post fetchIfNeededInBackgroundWithBlock:^(PFObject *post, NSError *error) {
-       // Get photo
+        NSDate *now = [NSDate date];
+        NSDate *created = post.createdAt;
+        NSUInteger unitFlags = NSDayCalendarUnit;
+        NSCalendar* calendar = [NSCalendar currentCalendar];
+        NSDateComponents *components = [calendar components:unitFlags fromDate:created toDate:now options:0];
+        if ([components day] == 1) {
+            cell.timeDiffLabel.text = [NSString stringWithFormat:@"%d day ago",[components day]];
+        }
+        else {
+            cell.timeDiffLabel.text = [NSString stringWithFormat:@"%d days ago",[components day]];
+        }
+               // Get photo
         PFObject *photo = [post objectForKey:kPostPhotoKey];
         [photo fetchIfNeededInBackgroundWithBlock:^(PFObject *photo, NSError *error) {
             // Get user
-            PFObject *user = [photo objectForKey:kPhotoOwnerKey];
-            [user fetchIfNeededInBackgroundWithBlock:^(PFObject *user, NSError *error) {
-                // Show info
-                cell.posterNameLabel.text = [user objectForKey:kUserNameKey];
-            }];
-            // Get image
-            PFFile *imageFile = [photo objectForKey:kPhotoImageKey];
-            [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-                // Show image
-                UIImage *image = [UIImage imageWithData:data];
-                [cell.feedPhotoImageView setImage:image];
-                [cell.feedPhotoImageView  setContentMode:UIViewContentModeScaleAspectFit];
-            }];
+            if (!error) {
+                PFObject *user = [photo objectForKey:kPhotoOwnerKey];
+                [user fetchIfNeededInBackgroundWithBlock:^(PFObject *user, NSError *error) {
+                    // Show info
+                    if (!error) {
+                        cell.posterNameLabel.text = [user objectForKey:kUserNameKey];
+                        PFFile *thumbnailFile = [user objectForKey:kUserPhotoKey];
+                        [thumbnailFile getDataInBackgroundWithBlock:^(NSData *thumbnail, NSError *error) {
+                            // Show thumbnail
+                            if (!error) {
+                                UIImage *image = [UIImage imageWithData:thumbnail];
+                                [cell.posterThumbnailImageView setImage:image];
+                                [cell.posterThumbnailImageView  setContentMode:UIViewContentModeScaleAspectFit];
+                            }
+                        }];
+                    }
+                }];
+                // Get image
+                PFFile *imageFile = [photo objectForKey:kPhotoImageKey];
+                [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+                    // Show feed photo
+                    if (!error) {
+                        UIImage *image = [UIImage imageWithData:data];
+                        [cell.feedPhotoImageView setImage:image];
+                        [cell.feedPhotoImageView  setContentMode:UIViewContentModeScaleAspectFit];
+                    }
+                }];
+            }
         }];
     }];
     
@@ -156,6 +247,22 @@ NSMutableArray *feedItems;
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
+}
+
+#pragma mark - 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([[segue identifier] isEqualToString:@"showFeedItemDetail"]) {
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        FeedItemCell *cell = (FeedItemCell*)[self.tableView cellForRowAtIndexPath:indexPath];
+        if ([[segue destinationViewController] class] == [FeedItemDetailViewController class]) {
+            FeedItemDetailViewController *detail = [segue destinationViewController];
+            detail.posterName = cell.posterNameLabel.text;
+            detail.postTimeDiff = cell.timeDiffLabel.text;
+            detail.posterThumbnail = [cell.posterThumbnailImageView image];
+            detail.postImage = [cell.feedPhotoImageView image];
+        }
+    }
 }
 
 - (void)logoutButtonTouchHandler:(id)sender {

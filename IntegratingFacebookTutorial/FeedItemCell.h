@@ -12,6 +12,7 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *posterThumbnailImageView;
 @property (weak, nonatomic) IBOutlet UILabel *posterNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *timeDiffLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *feedPhotoImageView;
 
 @end

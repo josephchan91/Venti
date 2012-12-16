@@ -28,4 +28,5 @@ UIImageView *posterThumbnailImageView;
     // Configure the view for the selected state
 }
 
+
 @end

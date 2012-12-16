@@ -9,7 +9,7 @@
 #import <Parse/Parse.h>
 #import <UIKit/UIKit.h>
 
-@interface FeedViewController : UITableViewController
+@interface FeedViewController : UITableViewController <NSURLConnectionDelegate>
 
 // UITableView row data properties
 @property (nonatomic, strong) NSMutableArray *rowDataArray;

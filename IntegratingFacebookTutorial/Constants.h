@@ -11,6 +11,7 @@
 // User key
 extern NSString *const kUserFacebookKey;
 extern NSString *const kUserNameKey;
+extern NSString *const kUserPhotoKey;
 
 // Photo keys
 extern NSString *const kPhotoClassKey;

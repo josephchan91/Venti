@@ -9,6 +9,7 @@
 // User key
 NSString *const kUserFacebookKey = @"facebookId";
 NSString *const kUserNameKey = @"name";
+NSString *const kUserPhotoKey = @"photo";
 
 // Photo keys
 NSString *const kPhotoClassKey = @"Photo";
