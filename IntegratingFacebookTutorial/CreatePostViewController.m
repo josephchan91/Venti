@@ -154,7 +154,7 @@ UIImage *image;
 
 - (void)facebookViewControllerDoneWasPressed:(id)sender {
     NSMutableString *text = [[NSMutableString alloc] init];
-    
+    friendIds = [NSMutableArray array];
     // we pick up the users from the selection, and create a string that we use to update the text view
     // at the bottom of the display; note that self.selection is a property inherited from our base class
     for (id<PF_FBGraphUser> user in self.friendPickerController.selection) {

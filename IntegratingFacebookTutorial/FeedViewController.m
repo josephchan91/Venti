@@ -181,7 +181,10 @@ NSString *facebookId;
         cell = [[FeedItemCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         [cell setSelectionStyle:UITableViewCellSelectionStyleGray];
     }
-
+    
+    // Set radius
+    cell.cardView.layer.cornerRadius = 2;
+    
     // Get feed
     PFObject *feedItem = [feedItems objectAtIndex:indexPath.row];
     PFObject *post = [feedItem objectForKey:kFeedItemPostKey];

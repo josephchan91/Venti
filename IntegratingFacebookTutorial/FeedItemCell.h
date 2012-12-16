@@ -7,8 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <QuartzCore/QuartzCore.h>
 
 @interface FeedItemCell : UITableViewCell
+
+// Card View
+@property (weak, nonatomic) IBOutlet UIView *cardView;
 
 @property (weak, nonatomic) IBOutlet UIImageView *posterThumbnailImageView;
 @property (weak, nonatomic) IBOutlet UILabel *posterNameLabel;

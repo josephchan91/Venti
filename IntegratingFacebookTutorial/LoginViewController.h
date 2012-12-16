@@ -8,5 +8,6 @@
 @property (nonatomic, strong) IBOutlet UIActivityIndicatorView *activityIndicator;
 
 - (IBAction)loginButtonTouchHandler:(id)sender;
+@property (weak, nonatomic) IBOutlet UIImageView *backgroundImageView;
 
 @end

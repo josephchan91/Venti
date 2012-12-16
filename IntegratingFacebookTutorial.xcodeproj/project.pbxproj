@@ -18,6 +18,7 @@
 		90F8CB62167D4962008BC14B /* FeedItemDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90F8CB61167D4962008BC14B /* FeedItemDetailViewController.m */; };
 		90F8CB69167D65CC008BC14B /* glyphicons_244_conversation.png in Resources */ = {isa = PBXBuildFile; fileRef = 90F8CB68167D65CC008BC14B /* glyphicons_244_conversation.png */; };
 		90F8CB76167D8F76008BC14B /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 90F8CB75167D8F76008BC14B /* CommentCell.m */; };
+		90F8CB7C167D9749008BC14B /* venti_login.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 90F8CB7B167D9749008BC14B /* venti_login.jpg */; };
 		C425016A161BBAE400474BCD /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4250166161BBAE400474BCD /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		C425016B161BBAE400474BCD /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4250167161BBAE400474BCD /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		C425016C161BBAE400474BCD /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C4250168161BBAE400474BCD /* libsqlite3.dylib */; };
@@ -65,6 +66,7 @@
 		90F8CB68167D65CC008BC14B /* glyphicons_244_conversation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glyphicons_244_conversation.png; sourceTree = "<group>"; };
 		90F8CB74167D8F76008BC14B /* CommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentCell.h; sourceTree = "<group>"; };
 		90F8CB75167D8F76008BC14B /* CommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentCell.m; sourceTree = "<group>"; };
+		90F8CB7B167D9749008BC14B /* venti_login.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = venti_login.jpg; sourceTree = "<group>"; };
 		C4250166161BBAE400474BCD /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		C4250167161BBAE400474BCD /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		C4250168161BBAE400474BCD /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
@@ -194,6 +196,7 @@
 		D4DA79F514D3345A0055F672 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				90F8CB7B167D9749008BC14B /* venti_login.jpg */,
 				90F8CB68167D65CC008BC14B /* glyphicons_244_conversation.png */,
 				9044BD8D167BC5F9008491E4 /* glyphicons_011_camera.png */,
 				9044BD8B167BC406008491E4 /* glyphicons_006_user_add.png */,
@@ -276,6 +279,7 @@
 				9044BD8C167BC406008491E4 /* glyphicons_006_user_add.png in Resources */,
 				9044BD8E167BC5F9008491E4 /* glyphicons_011_camera.png in Resources */,
 				90F8CB69167D65CC008BC14B /* glyphicons_244_conversation.png in Resources */,
+				90F8CB7C167D9749008BC14B /* venti_login.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

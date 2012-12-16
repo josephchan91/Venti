@@ -13,6 +13,8 @@
     [super viewDidLoad];
     self.title = @"Venti";
     
+    self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:24.0/255.0 green:167.0/255.0 blue:181.0/255.0 alpha:1.0];
+    
     // Check if user is cached and linked to Facebook, if so, bypass login    
     if ([PFUser currentUser] && [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]]) {
         // push to feed
@@ -20,6 +22,17 @@
     }
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO];
+}
 
 #pragma mark - Login mehtods
 
@@ -56,4 +69,8 @@
     [_activityIndicator startAnimating]; // Show loading indicator until login is finished
 }
 
+- (void)viewDidUnload {
+    [self setBackgroundImageView:nil];
+    [super viewDidUnload];
+}
 @end
