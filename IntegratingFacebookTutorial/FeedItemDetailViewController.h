@@ -8,6 +8,7 @@
 
 #import <Parse/Parse.h>
 #import <UIKit/UIKit.h>
+#import <QuartzCore/QuartzCore.h>
 
 @interface FeedItemDetailViewController : UIViewController <UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource>
 
@@ -18,6 +19,9 @@
 @property (weak, nonatomic) NSString *posterName;
 @property (weak, nonatomic) NSString *postTimeDiff;
 @property (weak, nonatomic) NSString *postId;
+
+// Card View
+@property (weak, nonatomic) IBOutlet UIView *cardView;
 
 // Header view
 @property (weak, nonatomic) IBOutlet UIImageView *posterThumbnailImageView;

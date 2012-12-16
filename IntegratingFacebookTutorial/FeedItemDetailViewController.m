@@ -38,6 +38,9 @@ NSArray *comments;
     [self.posterThumbnailImageView setContentMode:UIViewContentModeScaleAspectFit];
     [self.postPhotoImageView setContentMode:UIViewContentModeScaleAspectFit];
     
+    // Card view
+    self.cardView.layer.cornerRadius = 2;
+    
     // Background color of text container
     self.commentView.backgroundColor = [UIColor colorWithRed:24.0/255.0 green:167.0/255.0 blue:181.0/255.0 alpha:1.0];
     
@@ -85,6 +88,7 @@ NSArray *comments;
     [self setPosterNameLabel:nil];
     [self setPostTimeDiffLabel:nil];
     [self setPostPhotoImageView:nil];
+    [self setCardView:nil];
     [super viewDidUnload];
 }
 
@@ -165,6 +169,17 @@ NSArray *comments;
     
     PFObject *comment = [comments objectAtIndex:indexPath.row];
     cell.commentContentLabel.text = [comment objectForKey:kCommentContentKey];
+    NSDate *now = [NSDate date];
+    NSDate *created = comment.createdAt;
+    NSUInteger unitFlags = NSDayCalendarUnit;
+    NSCalendar* calendar = [NSCalendar currentCalendar];
+    NSDateComponents *components = [calendar components:unitFlags fromDate:created toDate:now options:0];
+    if ([components day] == 1) {
+        cell.commentTimeDiffLabel.text = [NSString stringWithFormat:@"%d day ago",[components day]];
+    }
+    else {
+        cell.commentTimeDiffLabel.text = [NSString stringWithFormat:@"%d days ago",[components day]];
+    }
     
     // Get the user
     PFUser *commenter = [comment objectForKey:kCommentCommenterKey];
@@ -185,6 +200,11 @@ NSArray *comments;
     }];
     
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 85.0;
 }
 
 @end

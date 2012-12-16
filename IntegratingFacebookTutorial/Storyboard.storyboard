@@ -28,8 +28,8 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="venti_login.jpg" id="SXy-XH-pCY">
-                                <rect key="frame" x="0.0" y="-44" width="320" height="568"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="venti.jpg" id="JVJ-Tw-vbn">
+                                <rect key="frame" x="0.0" y="-64" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="YyG-be-Uic">
@@ -48,7 +48,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.94509803920000002" green="0.94509803920000002" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="D9g-o7-zyH"/>
                     <connections>
@@ -159,10 +159,10 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" id="42K-Ol-liB">
-                                <rect key="frame" x="20" y="10" width="280" height="400"/>
+                            <view contentMode="scaleToFill" id="ave-N9-Gxg">
+                                <rect key="frame" x="20" y="10" width="280" height="360"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Zpd-tQ-gOj">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="376"/>
@@ -194,20 +194,31 @@
                                             <rect key="frame" x="10" y="70" width="300" height="300"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
+                                        <view contentMode="scaleToFill" id="ufK-kl-8RR">
+                                            <rect key="frame" x="20" y="374" width="280" height="1"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" red="0.94509803920000002" green="0.94509803920000002" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        </view>
+                                        <view contentMode="scaleToFill" id="jTO-0B-WlM">
+                                            <rect key="frame" x="20" y="65" width="280" height="1"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" red="0.94509803920000002" green="0.94509803920000002" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        </view>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="CommentCell" rowHeight="75" id="DcH-wC-aSg" customClass="CommentCell">
-                                        <rect key="frame" x="0.0" y="398" width="320" height="75"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="CommentCell" rowHeight="85" id="DcH-wC-aSg" customClass="CommentCell">
+                                        <rect key="frame" x="0.0" y="398" width="320" height="85"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="74"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="84"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="u01-mr-bzP">
                                                     <rect key="frame" x="30" y="10" width="40" height="40"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 </imageView>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="17j-yo-i44">
                                                     <rect key="frame" x="80" y="10" width="220" height="21"/>
@@ -219,7 +230,7 @@
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="eOk-UB-nsw">
                                                     <rect key="frame" x="80" y="25" width="220" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="13"/>
+                                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="13"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
@@ -230,6 +241,11 @@
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
+                                                <view contentMode="scaleToFill" id="xAk-XD-KeU">
+                                                    <rect key="frame" x="20" y="83" width="280" height="1"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" red="0.94509803920000002" green="0.94509803920000002" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                </view>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
@@ -280,6 +296,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Post" id="pvQ-IY-nIc"/>
                     <connections>
+                        <outlet property="cardView" destination="ave-N9-Gxg" id="Joj-UG-CG3"/>
                         <outlet property="commentTextField" destination="DMS-cn-18k" id="QmZ-CB-I80"/>
                         <outlet property="commentView" destination="hpL-Am-eEI" id="uYt-Xw-1U3"/>
                         <outlet property="commentsTableView" destination="Zpd-tQ-gOj" id="Psu-Lb-rSo"/>
@@ -373,7 +390,7 @@
         <image name="glyphicons_150_edit.png" width="24" height="21"/>
         <image name="glyphicons_244_conversation.png" width="25" height="18"/>
         <image name="login-button-small.png" width="151" height="43"/>
-        <image name="venti_login.jpg" width="640" height="1136"/>
+        <image name="venti.jpg" width="640" height="1136"/>
     </resources>
     <classes>
         <class className="CommentCell" superclassName="UITableViewCell">
@@ -409,6 +426,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FeedItemDetailViewController.h"/>
             <relationships>
                 <relationship kind="action" name="postCommentButtonAction:"/>
+                <relationship kind="outlet" name="cardView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="commentTextField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="commentView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="commentsTableView" candidateClass="UITableView"/>

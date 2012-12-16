@@ -18,16 +18,14 @@
 		90F8CB62167D4962008BC14B /* FeedItemDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90F8CB61167D4962008BC14B /* FeedItemDetailViewController.m */; };
 		90F8CB69167D65CC008BC14B /* glyphicons_244_conversation.png in Resources */ = {isa = PBXBuildFile; fileRef = 90F8CB68167D65CC008BC14B /* glyphicons_244_conversation.png */; };
 		90F8CB76167D8F76008BC14B /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 90F8CB75167D8F76008BC14B /* CommentCell.m */; };
-		90F8CB7C167D9749008BC14B /* venti_login.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 90F8CB7B167D9749008BC14B /* venti_login.jpg */; };
+		90F8CB83167DB681008BC14B /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 90F8CB82167DB681008BC14B /* icon.png */; };
+		90F8CB90167DB9D4008BC14B /* venti.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 90F8CB8F167DB9D4008BC14B /* venti.jpg */; };
 		C425016A161BBAE400474BCD /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4250166161BBAE400474BCD /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		C425016B161BBAE400474BCD /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4250167161BBAE400474BCD /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		C425016C161BBAE400474BCD /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C4250168161BBAE400474BCD /* libsqlite3.dylib */; };
 		C425016D161BBAE400474BCD /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4250169161BBAE400474BCD /* StoreKit.framework */; };
 		C4250170161BBAEE00474BCD /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C425016F161BBAEE00474BCD /* libz.dylib */; };
 		C4250172161BBAFC00474BCD /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4250171161BBAFC00474BCD /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		C4BB20D7161BC4FB00A7884A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C4BB20D4161BC4FB00A7884A /* Default-568h@2x.png */; };
-		C4BB20D8161BC4FB00A7884A /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = C4BB20D5161BC4FB00A7884A /* Default.png */; };
-		C4BB20D9161BC4FB00A7884A /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C4BB20D6161BC4FB00A7884A /* Default@2x.png */; };
 		C4CF27E6161E3BAA008AB8CC /* login-button-small-pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = C4CF27E2161E3BAA008AB8CC /* login-button-small-pressed.png */; };
 		C4CF27E7161E3BAA008AB8CC /* login-button-small-pressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C4CF27E3161E3BAA008AB8CC /* login-button-small-pressed@2x.png */; };
 		C4CF27E8161E3BAA008AB8CC /* login-button-small.png in Resources */ = {isa = PBXBuildFile; fileRef = C4CF27E4161E3BAA008AB8CC /* login-button-small.png */; };
@@ -66,21 +64,19 @@
 		90F8CB68167D65CC008BC14B /* glyphicons_244_conversation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glyphicons_244_conversation.png; sourceTree = "<group>"; };
 		90F8CB74167D8F76008BC14B /* CommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentCell.h; sourceTree = "<group>"; };
 		90F8CB75167D8F76008BC14B /* CommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentCell.m; sourceTree = "<group>"; };
-		90F8CB7B167D9749008BC14B /* venti_login.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = venti_login.jpg; sourceTree = "<group>"; };
+		90F8CB82167DB681008BC14B /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		90F8CB8F167DB9D4008BC14B /* venti.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = venti.jpg; sourceTree = "<group>"; };
 		C4250166161BBAE400474BCD /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		C4250167161BBAE400474BCD /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		C4250168161BBAE400474BCD /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		C4250169161BBAE400474BCD /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		C425016F161BBAEE00474BCD /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		C4250171161BBAFC00474BCD /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
-		C4BB20D4161BC4FB00A7884A /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		C4BB20D5161BC4FB00A7884A /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		C4BB20D6161BC4FB00A7884A /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		C4CF27E2161E3BAA008AB8CC /* login-button-small-pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-button-small-pressed.png"; sourceTree = "<group>"; };
 		C4CF27E3161E3BAA008AB8CC /* login-button-small-pressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-button-small-pressed@2x.png"; sourceTree = "<group>"; };
 		C4CF27E4161E3BAA008AB8CC /* login-button-small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-button-small.png"; sourceTree = "<group>"; };
 		C4CF27E5161E3BAA008AB8CC /* login-button-small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-button-small@2x.png"; sourceTree = "<group>"; };
-		D4DA79EA14D3345A0055F672 /* IntegratingFacebookTutorial.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IntegratingFacebookTutorial.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D4DA79EA14D3345A0055F672 /* Venti.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Venti.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4DA79EE14D3345A0055F672 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		D4DA79F014D3345A0055F672 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D4DA79F214D3345A0055F672 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -140,7 +136,7 @@
 		D4DA79EB14D3345A0055F672 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D4DA79EA14D3345A0055F672 /* IntegratingFacebookTutorial.app */,
+				D4DA79EA14D3345A0055F672 /* Venti.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -196,7 +192,8 @@
 		D4DA79F514D3345A0055F672 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				90F8CB7B167D9749008BC14B /* venti_login.jpg */,
+				90F8CB8F167DB9D4008BC14B /* venti.jpg */,
+				90F8CB82167DB681008BC14B /* icon.png */,
 				90F8CB68167D65CC008BC14B /* glyphicons_244_conversation.png */,
 				9044BD8D167BC5F9008491E4 /* glyphicons_011_camera.png */,
 				9044BD8B167BC406008491E4 /* glyphicons_006_user_add.png */,
@@ -205,9 +202,6 @@
 				C4CF27E3161E3BAA008AB8CC /* login-button-small-pressed@2x.png */,
 				C4CF27E4161E3BAA008AB8CC /* login-button-small.png */,
 				C4CF27E5161E3BAA008AB8CC /* login-button-small@2x.png */,
-				C4BB20D4161BC4FB00A7884A /* Default-568h@2x.png */,
-				C4BB20D5161BC4FB00A7884A /* Default.png */,
-				C4BB20D6161BC4FB00A7884A /* Default@2x.png */,
 				D4DA79F614D3345A0055F672 /* IntegratingFacebookTutorial-Info.plist */,
 				D4DA79F714D3345A0055F672 /* InfoPlist.strings */,
 				D4DA79FA14D3345A0055F672 /* main.m */,
@@ -233,7 +227,7 @@
 			);
 			name = IntegratingFacebookTutorial;
 			productName = IntegratingFacebookTutorial;
-			productReference = D4DA79EA14D3345A0055F672 /* IntegratingFacebookTutorial.app */;
+			productReference = D4DA79EA14D3345A0055F672 /* Venti.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -267,9 +261,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4DA79F914D3345A0055F672 /* InfoPlist.strings in Resources */,
-				C4BB20D7161BC4FB00A7884A /* Default-568h@2x.png in Resources */,
-				C4BB20D8161BC4FB00A7884A /* Default.png in Resources */,
-				C4BB20D9161BC4FB00A7884A /* Default@2x.png in Resources */,
 				C4CF27E6161E3BAA008AB8CC /* login-button-small-pressed.png in Resources */,
 				C4CF27E7161E3BAA008AB8CC /* login-button-small-pressed@2x.png in Resources */,
 				C4CF27E8161E3BAA008AB8CC /* login-button-small.png in Resources */,
@@ -279,7 +270,8 @@
 				9044BD8C167BC406008491E4 /* glyphicons_006_user_add.png in Resources */,
 				9044BD8E167BC5F9008491E4 /* glyphicons_011_camera.png in Resources */,
 				90F8CB69167D65CC008BC14B /* glyphicons_244_conversation.png in Resources */,
-				90F8CB7C167D9749008BC14B /* venti_login.jpg in Resources */,
+				90F8CB83167DB681008BC14B /* icon.png in Resources */,
+				90F8CB90167DB9D4008BC14B /* venti.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -371,7 +363,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "IntegratingFacebookTutorial/IntegratingFacebookTutorial-Prefix.pch";
 				INFOPLIST_FILE = "IntegratingFacebookTutorial/IntegratingFacebookTutorial-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Venti;
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -387,7 +379,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "IntegratingFacebookTutorial/IntegratingFacebookTutorial-Prefix.pch";
 				INFOPLIST_FILE = "IntegratingFacebookTutorial/IntegratingFacebookTutorial-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Venti;
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
