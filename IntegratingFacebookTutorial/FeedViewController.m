@@ -187,6 +187,8 @@ NSString *facebookId;
     PFObject *post = [feedItem objectForKey:kFeedItemPostKey];
     // Get post
     [post fetchIfNeededInBackgroundWithBlock:^(PFObject *post, NSError *error) {
+        // Give cell postId
+        cell.postId = post.objectId;
         NSDate *now = [NSDate date];
         NSDate *created = post.createdAt;
         NSUInteger unitFlags = NSDayCalendarUnit;
@@ -261,6 +263,7 @@ NSString *facebookId;
             detail.postTimeDiff = cell.timeDiffLabel.text;
             detail.posterThumbnail = [cell.posterThumbnailImageView image];
             detail.postImage = [cell.feedPhotoImageView image];
+            detail.postId = cell.postId;
         }
     }
 }

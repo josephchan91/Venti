@@ -25,3 +25,9 @@ NSString *const kPostPosterKey = @"poster";
 NSString *const kFeedItemClassKey = @"FeedItem";
 NSString *const kFeedItemPostKey = @"post";
 NSString *const kFeedItemViewerKey = @"viewer";
+
+// Comments
+NSString *const kCommentClassKey = @"Comment";
+NSString *const kCommentPostKey = @"postId";
+NSString *const kCommentCommenterKey = @"commenter";
+NSString*const kCommentContentKey = @"content";

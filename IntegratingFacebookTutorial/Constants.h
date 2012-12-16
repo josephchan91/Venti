@@ -27,3 +27,9 @@ extern NSString *const kPostPosterKey;
 extern NSString *const kFeedItemClassKey;
 extern NSString *const kFeedItemPostKey;
 extern NSString *const kFeedItemViewerKey;
+
+// Comments
+extern NSString *const kCommentClassKey;
+extern NSString *const kCommentPostKey;
+extern NSString *const kCommentCommenterKey;
+extern NSString *const kCommentContentKey;

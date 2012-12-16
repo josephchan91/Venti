@@ -16,6 +16,8 @@
 		9044BD95167C311B008491E4 /* FeedItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9044BD94167C311B008491E4 /* FeedItemCell.m */; };
 		90D69EB8167B83A10022CB61 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90D69EB7167B83A10022CB61 /* Storyboard.storyboard */; };
 		90F8CB62167D4962008BC14B /* FeedItemDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90F8CB61167D4962008BC14B /* FeedItemDetailViewController.m */; };
+		90F8CB69167D65CC008BC14B /* glyphicons_244_conversation.png in Resources */ = {isa = PBXBuildFile; fileRef = 90F8CB68167D65CC008BC14B /* glyphicons_244_conversation.png */; };
+		90F8CB76167D8F76008BC14B /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 90F8CB75167D8F76008BC14B /* CommentCell.m */; };
 		C425016A161BBAE400474BCD /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4250166161BBAE400474BCD /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		C425016B161BBAE400474BCD /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4250167161BBAE400474BCD /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		C425016C161BBAE400474BCD /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C4250168161BBAE400474BCD /* libsqlite3.dylib */; };
@@ -60,6 +62,9 @@
 		90D69EB7167B83A10022CB61 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		90F8CB60167D4962008BC14B /* FeedItemDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedItemDetailViewController.h; sourceTree = "<group>"; };
 		90F8CB61167D4962008BC14B /* FeedItemDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedItemDetailViewController.m; sourceTree = "<group>"; };
+		90F8CB68167D65CC008BC14B /* glyphicons_244_conversation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glyphicons_244_conversation.png; sourceTree = "<group>"; };
+		90F8CB74167D8F76008BC14B /* CommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentCell.h; sourceTree = "<group>"; };
+		90F8CB75167D8F76008BC14B /* CommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentCell.m; sourceTree = "<group>"; };
 		C4250166161BBAE400474BCD /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		C4250167161BBAE400474BCD /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		C4250168161BBAE400474BCD /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
@@ -177,6 +182,8 @@
 				90F8CB61167D4962008BC14B /* FeedItemDetailViewController.m */,
 				9044BD93167C311B008491E4 /* FeedItemCell.h */,
 				9044BD94167C311B008491E4 /* FeedItemCell.m */,
+				90F8CB74167D8F76008BC14B /* CommentCell.h */,
+				90F8CB75167D8F76008BC14B /* CommentCell.m */,
 				9044BD7C167BB990008491E4 /* CreatePostViewController.h */,
 				9044BD7D167BB990008491E4 /* CreatePostViewController.m */,
 				D4DA79F514D3345A0055F672 /* Supporting Files */,
@@ -187,6 +194,7 @@
 		D4DA79F514D3345A0055F672 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				90F8CB68167D65CC008BC14B /* glyphicons_244_conversation.png */,
 				9044BD8D167BC5F9008491E4 /* glyphicons_011_camera.png */,
 				9044BD8B167BC406008491E4 /* glyphicons_006_user_add.png */,
 				9044BD79167BB626008491E4 /* glyphicons_150_edit.png */,
@@ -267,6 +275,7 @@
 				9044BD7A167BB626008491E4 /* glyphicons_150_edit.png in Resources */,
 				9044BD8C167BC406008491E4 /* glyphicons_006_user_add.png in Resources */,
 				9044BD8E167BC5F9008491E4 /* glyphicons_011_camera.png in Resources */,
+				90F8CB69167D65CC008BC14B /* glyphicons_244_conversation.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -285,6 +294,7 @@
 				9044BD92167BFBD3008491E4 /* Constants.m in Sources */,
 				9044BD95167C311B008491E4 /* FeedItemCell.m in Sources */,
 				90F8CB62167D4962008BC14B /* FeedItemDetailViewController.m in Sources */,
+				90F8CB76167D8F76008BC14B /* CommentCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

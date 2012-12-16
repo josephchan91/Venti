@@ -14,5 +14,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *posterNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeDiffLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *feedPhotoImageView;
+@property (strong, nonatomic) NSString *postId;
 
 @end
