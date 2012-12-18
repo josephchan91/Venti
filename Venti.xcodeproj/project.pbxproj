@@ -14,7 +14,10 @@
 		9044BD8E167BC5F9008491E4 /* glyphicons_011_camera.png in Resources */ = {isa = PBXBuildFile; fileRef = 9044BD8D167BC5F9008491E4 /* glyphicons_011_camera.png */; };
 		9044BD92167BFBD3008491E4 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 9044BD91167BFBD3008491E4 /* Constants.m */; };
 		9044BD95167C311B008491E4 /* FeedItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9044BD94167C311B008491E4 /* FeedItemCell.m */; };
+		907DC675167FE60A00BFC5E2 /* README in Resources */ = {isa = PBXBuildFile; fileRef = 907DC674167FE60A00BFC5E2 /* README */; };
 		90D69EB8167B83A10022CB61 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90D69EB7167B83A10022CB61 /* Storyboard.storyboard */; };
+		90E6B95F167E4A4C00B8587F /* glyphicons_085_repeat.png in Resources */ = {isa = PBXBuildFile; fileRef = 90E6B95E167E4A4C00B8587F /* glyphicons_085_repeat.png */; };
+		90E6B962167E4AF600B8587F /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90E6B961167E4AF600B8587F /* Default-568h@2x.png */; };
 		90F8CB62167D4962008BC14B /* FeedItemDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90F8CB61167D4962008BC14B /* FeedItemDetailViewController.m */; };
 		90F8CB69167D65CC008BC14B /* glyphicons_244_conversation.png in Resources */ = {isa = PBXBuildFile; fileRef = 90F8CB68167D65CC008BC14B /* glyphicons_244_conversation.png */; };
 		90F8CB76167D8F76008BC14B /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 90F8CB75167D8F76008BC14B /* CommentCell.m */; };
@@ -58,7 +61,10 @@
 		9044BD91167BFBD3008491E4 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		9044BD93167C311B008491E4 /* FeedItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedItemCell.h; sourceTree = "<group>"; };
 		9044BD94167C311B008491E4 /* FeedItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedItemCell.m; sourceTree = "<group>"; };
+		907DC674167FE60A00BFC5E2 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		90D69EB7167B83A10022CB61 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
+		90E6B95E167E4A4C00B8587F /* glyphicons_085_repeat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glyphicons_085_repeat.png; sourceTree = "<group>"; };
+		90E6B961167E4AF600B8587F /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
 		90F8CB60167D4962008BC14B /* FeedItemDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedItemDetailViewController.h; sourceTree = "<group>"; };
 		90F8CB61167D4962008BC14B /* FeedItemDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedItemDetailViewController.m; sourceTree = "<group>"; };
 		90F8CB68167D65CC008BC14B /* glyphicons_244_conversation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glyphicons_244_conversation.png; sourceTree = "<group>"; };
@@ -80,10 +86,10 @@
 		D4DA79EE14D3345A0055F672 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		D4DA79F014D3345A0055F672 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D4DA79F214D3345A0055F672 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		D4DA79F614D3345A0055F672 /* IntegratingFacebookTutorial-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "IntegratingFacebookTutorial-Info.plist"; sourceTree = "<group>"; };
+		D4DA79F614D3345A0055F672 /* Venti-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Venti-Info.plist"; sourceTree = "<group>"; };
 		D4DA79F814D3345A0055F672 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D4DA79FA14D3345A0055F672 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		D4DA79FC14D3345A0055F672 /* IntegratingFacebookTutorial-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "IntegratingFacebookTutorial-Prefix.pch"; sourceTree = "<group>"; };
+		D4DA79FC14D3345A0055F672 /* Venti-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Venti-Prefix.pch"; sourceTree = "<group>"; };
 		D4DA79FD14D3345A0055F672 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		D4DA79FE14D3345A0055F672 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		D4DA7A0514D334B30055F672 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
@@ -127,6 +133,7 @@
 		D4DA79DF14D3345A0055F672 = {
 			isa = PBXGroup;
 			children = (
+				907DC674167FE60A00BFC5E2 /* README */,
 				D4DA79F414D3345A0055F672 /* IntegratingFacebookTutorial */,
 				D4DA79ED14D3345A0055F672 /* Frameworks */,
 				D4DA79EB14D3345A0055F672 /* Products */,
@@ -192,6 +199,8 @@
 		D4DA79F514D3345A0055F672 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				90E6B961167E4AF600B8587F /* Default-568h@2x.png */,
+				90E6B95E167E4A4C00B8587F /* glyphicons_085_repeat.png */,
 				90F8CB8F167DB9D4008BC14B /* venti.jpg */,
 				90F8CB82167DB681008BC14B /* icon.png */,
 				90F8CB68167D65CC008BC14B /* glyphicons_244_conversation.png */,
@@ -202,10 +211,10 @@
 				C4CF27E3161E3BAA008AB8CC /* login-button-small-pressed@2x.png */,
 				C4CF27E4161E3BAA008AB8CC /* login-button-small.png */,
 				C4CF27E5161E3BAA008AB8CC /* login-button-small@2x.png */,
-				D4DA79F614D3345A0055F672 /* IntegratingFacebookTutorial-Info.plist */,
+				D4DA79F614D3345A0055F672 /* Venti-Info.plist */,
 				D4DA79F714D3345A0055F672 /* InfoPlist.strings */,
 				D4DA79FA14D3345A0055F672 /* main.m */,
-				D4DA79FC14D3345A0055F672 /* IntegratingFacebookTutorial-Prefix.pch */,
+				D4DA79FC14D3345A0055F672 /* Venti-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -213,9 +222,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		D4DA79E914D3345A0055F672 /* IntegratingFacebookTutorial */ = {
+		D4DA79E914D3345A0055F672 /* Venti */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D4DA7A0214D3345A0055F672 /* Build configuration list for PBXNativeTarget "IntegratingFacebookTutorial" */;
+			buildConfigurationList = D4DA7A0214D3345A0055F672 /* Build configuration list for PBXNativeTarget "Venti" */;
 			buildPhases = (
 				D4DA79E614D3345A0055F672 /* Sources */,
 				D4DA79E714D3345A0055F672 /* Frameworks */,
@@ -225,7 +234,7 @@
 			);
 			dependencies = (
 			);
-			name = IntegratingFacebookTutorial;
+			name = Venti;
 			productName = IntegratingFacebookTutorial;
 			productReference = D4DA79EA14D3345A0055F672 /* Venti.app */;
 			productType = "com.apple.product-type.application";
@@ -238,7 +247,7 @@
 			attributes = {
 				LastUpgradeCheck = 0420;
 			};
-			buildConfigurationList = D4DA79E414D3345A0055F672 /* Build configuration list for PBXProject "IntegratingFacebookTutorial" */;
+			buildConfigurationList = D4DA79E414D3345A0055F672 /* Build configuration list for PBXProject "Venti" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -250,7 +259,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D4DA79E914D3345A0055F672 /* IntegratingFacebookTutorial */,
+				D4DA79E914D3345A0055F672 /* Venti */,
 			);
 		};
 /* End PBXProject section */
@@ -272,6 +281,9 @@
 				90F8CB69167D65CC008BC14B /* glyphicons_244_conversation.png in Resources */,
 				90F8CB83167DB681008BC14B /* icon.png in Resources */,
 				90F8CB90167DB9D4008BC14B /* venti.jpg in Resources */,
+				90E6B95F167E4A4C00B8587F /* glyphicons_085_repeat.png in Resources */,
+				90E6B962167E4AF600B8587F /* Default-568h@2x.png in Resources */,
+				907DC675167FE60A00BFC5E2 /* README in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -361,8 +373,8 @@
 					"\"$(SRCROOT)\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "IntegratingFacebookTutorial/IntegratingFacebookTutorial-Prefix.pch";
-				INFOPLIST_FILE = "IntegratingFacebookTutorial/IntegratingFacebookTutorial-Info.plist";
+				GCC_PREFIX_HEADER = "IntegratingFacebookTutorial/Venti-Prefix.pch";
+				INFOPLIST_FILE = "IntegratingFacebookTutorial/Venti-Info.plist";
 				PRODUCT_NAME = Venti;
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
@@ -377,8 +389,8 @@
 					"\"$(SRCROOT)\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "IntegratingFacebookTutorial/IntegratingFacebookTutorial-Prefix.pch";
-				INFOPLIST_FILE = "IntegratingFacebookTutorial/IntegratingFacebookTutorial-Info.plist";
+				GCC_PREFIX_HEADER = "IntegratingFacebookTutorial/Venti-Prefix.pch";
+				INFOPLIST_FILE = "IntegratingFacebookTutorial/Venti-Info.plist";
 				PRODUCT_NAME = Venti;
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
@@ -388,7 +400,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		D4DA79E414D3345A0055F672 /* Build configuration list for PBXProject "IntegratingFacebookTutorial" */ = {
+		D4DA79E414D3345A0055F672 /* Build configuration list for PBXProject "Venti" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D4DA7A0014D3345A0055F672 /* Debug */,
@@ -397,7 +409,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D4DA7A0214D3345A0055F672 /* Build configuration list for PBXNativeTarget "IntegratingFacebookTutorial" */ = {
+		D4DA7A0214D3345A0055F672 /* Build configuration list for PBXNativeTarget "Venti" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D4DA7A0314D3345A0055F672 /* Debug */,

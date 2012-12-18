@@ -1,34 +1,30 @@
-//
-//  Constants.h
-//  IntegratingFacebookTutorial
-//
-//  Created by josephchan91 on 12/14/12.
-//
-//
-
+/** 
+ Class for storing strings of keys used for Parse objects
+**/
+ 
 #pragma mark - PFObject Activity Class
 
-// User key
+// User Object Keys
 extern NSString *const kUserFacebookKey;
 extern NSString *const kUserNameKey;
 extern NSString *const kUserPhotoKey;
 
-// Photo keys
+// Photo Object Keys
 extern NSString *const kPhotoClassKey;
 extern NSString *const kPhotoOwnerKey;
 extern NSString *const kPhotoImageKey;
 
-// Post keys
+// Post Object Keys
 extern NSString *const kPostClassKey;
 extern NSString *const kPostPhotoKey;
 extern NSString *const kPostPosterKey;
 
-// Feed keys
+// Feed Object Keys
 extern NSString *const kFeedItemClassKey;
 extern NSString *const kFeedItemPostKey;
 extern NSString *const kFeedItemViewerKey;
 
-// Comments
+// Comment Object Keys
 extern NSString *const kCommentClassKey;
 extern NSString *const kCommentPostKey;
 extern NSString *const kCommentCommenterKey;

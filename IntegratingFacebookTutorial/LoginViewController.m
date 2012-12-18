@@ -1,5 +1,6 @@
-//
-//  Copyright (c) 2012 Parse. All rights reserved.
+/**
+ Class for handling user logins
+ **/
 
 #import "LoginViewController.h"
 #import <Parse/Parse.h>
@@ -17,11 +18,17 @@
     
     // Check if user is cached and linked to Facebook, if so, bypass login    
     if ([PFUser currentUser] && [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]]) {
-        // push to feed
+        // Push to feed view controller
         [self performSegueWithIdentifier:@"FeedViewControllerSegue" sender:self];
     }
 }
 
+- (void)viewDidUnload {
+    [self setBackgroundImageView:nil];
+    [super viewDidUnload];
+}
+
+/* We want to hide the navigation bar for the login view only */
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -42,10 +49,9 @@
     NSArray *permissionsArray = @[ @"user_about_me"];
     
     // Login PFUser using facebook
-    [PFFacebookUtils logInWithPermissions:permissionsArray block:^(PFUser *user, NSError *error) {
-        [_activityIndicator stopAnimating]; // Hide loading indicator
-        
+    [PFFacebookUtils logInWithPermissions:permissionsArray block:^(PFUser *user, NSError *error) {        
         if (!user) {
+            // Unable to return a user
             if (!error) {
                 NSLog(@"Uh oh. The user cancelled the Facebook login.");
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Log In Error" message:@"Uh oh. The user cancelled the Facebook login." delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Dismiss", nil];
@@ -56,21 +62,17 @@
                 [alert show];
             }
         } else if (user.isNew) {
+            // A new PFUser was created
             NSLog(@"User with facebook signed up and logged in!");
-            // push to feed
+            // Push to feed view controller
             [self performSegueWithIdentifier:@"FeedViewControllerSegue" sender:self];
         } else {
+            // A returning PFUser has logged in
             NSLog(@"User with facebook logged in!");
-            // push to feed
+            // Push to feed view controller
             [self performSegueWithIdentifier:@"FeedViewControllerSegue" sender:self];
         }
     }];
-    
-    [_activityIndicator startAnimating]; // Show loading indicator until login is finished
 }
 
-- (void)viewDidUnload {
-    [self setBackgroundImageView:nil];
-    [super viewDidUnload];
-}
 @end

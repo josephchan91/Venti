@@ -1,10 +1,7 @@
-//
-//  CommentCell.m
-//  IntegratingFacebookTutorial
-//
-//  Created by josephchan91 on 12/16/12.
-//
-//
+/**
+ Class for the view of a comment in a post's detail view
+ **/
+
 
 #import "CommentCell.h"
 

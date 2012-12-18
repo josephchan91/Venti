@@ -9,13 +9,13 @@
     // ****************************************************************************
     // Fill in with your Parse credentials:
     // ****************************************************************************
-    [Parse setApplicationId:@"m5fjvebIM2KDnRShm2HjEuXyuF06D56SL7J8Q1h9" clientKey:@"l7KylOFTZAOZYydN096j0b8edcnyKn3fH6IsQ51Y"];
+    [Parse setApplicationId:@"YOUR_PARSE_APP_ID" clientKey:@"YOUR_PARSE_CLIENT_KEY"];
     
     // ****************************************************************************
     // Fill in with your Facebook application ID:
     // ****************************************************************************
     
-    [PFFacebookUtils initializeWithApplicationId:@"229666960500243"];
+    [PFFacebookUtils initializeWithApplicationId:@"YOUR_FB_APP_ID"];
 
     // Override point for customization after application launch.
     return YES;

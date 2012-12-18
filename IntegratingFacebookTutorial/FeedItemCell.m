@@ -1,10 +1,6 @@
-//
-//  FeedItemCell.m
-//  IntegratingFacebookTutorial
-//
-//  Created by josephchan91 on 12/14/12.
-//
-//
+/**
+ Class for the view of a feed item in a user's feed
+ **/
 
 #import "FeedItemCell.h"
 

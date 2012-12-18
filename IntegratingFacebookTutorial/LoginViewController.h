@@ -1,5 +1,6 @@
-//
-//  Copyright (c) 2012 Parse. All rights reserved.
+/**
+ Class for handling user logins
+ **/
 
 #import <UIKit/UIKit.h>
 

@@ -129,6 +129,23 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Feed" id="cPw-S8-CHo">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="XxJ-b1-SZS">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="dYj-q5-Y8p">
+                                <rect key="frame" x="5" y="11" width="19" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Button" backgroundImage="glyphicons_085_repeat.png">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="refreshFeedAction:" destination="aAj-3v-BWa" eventType="touchUpInside" id="6HM-fp-KEi"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="plain" id="GQC-Nq-InD">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="AfJ-Nk-76Y">
                                 <rect key="frame" x="291" y="11" width="24" height="21"/>
@@ -193,6 +210,7 @@
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="M48-eJ-vBt">
                                             <rect key="frame" x="10" y="70" width="300" height="300"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </imageView>
                                         <view contentMode="scaleToFill" id="ufK-kl-8RR">
                                             <rect key="frame" x="20" y="374" width="280" height="1"/>
@@ -368,6 +386,13 @@
                                 <color key="backgroundColor" red="0.94509803920000002" green="0.94509803920000002" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <accessibility key="accessibilityConfiguration" label=""/>
                             </view>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Upload a Photo..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="z53-eD-c0p">
+                                <rect key="frame" x="6" y="51" width="144" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -387,71 +412,12 @@
     <resources>
         <image name="glyphicons_006_user_add.png" width="28" height="22"/>
         <image name="glyphicons_011_camera.png" width="26" height="20"/>
+        <image name="glyphicons_085_repeat.png" width="23" height="26"/>
         <image name="glyphicons_150_edit.png" width="24" height="21"/>
         <image name="glyphicons_244_conversation.png" width="25" height="18"/>
         <image name="login-button-small.png" width="151" height="43"/>
         <image name="venti.jpg" width="640" height="1136"/>
     </resources>
-    <classes>
-        <class className="CommentCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CommentCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="commentContentLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="commentTimeDiffLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="commenterNameLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="commenterThumbnailImageView" candidateClass="UIImageView"/>
-            </relationships>
-        </class>
-        <class className="CreatePostViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CreatePostViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="addPhotoAction:"/>
-                <relationship kind="action" name="shareWithFriendsAction:"/>
-                <relationship kind="outlet" name="addPhotoButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="photoButtonContainerView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="shareWithFriendsTextField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="FeedItemCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FeedItemCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="cardView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="feedPhotoImageView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="posterNameLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="posterThumbnailImageView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="timeDiffLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="FeedItemDetailViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FeedItemDetailViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="postCommentButtonAction:"/>
-                <relationship kind="outlet" name="cardView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="commentTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="commentView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="commentsTableView" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="feedDetailScrollView" candidateClass="UIScrollView"/>
-                <relationship kind="outlet" name="postPhotoImageView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="postTimeDiffLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="posterNameLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="posterThumbnailImageView" candidateClass="UIImageView"/>
-            </relationships>
-        </class>
-        <class className="FeedViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FeedViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="createPostButtonTouchHandler:"/>
-            </relationships>
-        </class>
-        <class className="LoginViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="loginButtonTouchHandler:"/>
-                <relationship kind="outlet" name="activityIndicator" candidateClass="UIActivityIndicatorView"/>
-                <relationship kind="outlet" name="backgroundImageView" candidateClass="UIImageView"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

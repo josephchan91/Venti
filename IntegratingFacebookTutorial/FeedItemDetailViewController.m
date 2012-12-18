@@ -1,10 +1,6 @@
-//
-//  FeedItemDetailViewController.m
-//  IntegratingFacebookTutorial
-//
-//  Created by josephchan91 on 12/15/12.
-//
-//
+/**
+ Class for displaying a post
+ **/
 
 #import "Constants.h"
 #import "FeedItemDetailViewController.h"
@@ -38,16 +34,16 @@ NSArray *comments;
     [self.posterThumbnailImageView setContentMode:UIViewContentModeScaleAspectFit];
     [self.postPhotoImageView setContentMode:UIViewContentModeScaleAspectFit];
     
-    // Card view
+    // Set up card view
     self.cardView.layer.cornerRadius = 2;
     
-    // Background color of text container
+    // Set up container of comment text field
     self.commentView.backgroundColor = [UIColor colorWithRed:24.0/255.0 green:167.0/255.0 blue:181.0/255.0 alpha:1.0];
     
     // set up text field delegate
     self.commentTextField.delegate = self;
     
-    // Get table info
+    // Reload all comments
     [self refreshComments];
 }
 
@@ -58,12 +54,13 @@ NSArray *comments;
     [self configureView];
 }
 
+/** Retrieves all comments for the post and refreshes the view **/
 - (void)refreshComments
 {
     PFQuery *query = [PFQuery queryWithClassName:kCommentClassKey];
     [query whereKey:kCommentPostKey equalTo:self.postId];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        // Add comments to array
+        // Add returned comment objects to array
         comments = objects;
         [self.commentsTableView reloadData];
     }];
@@ -92,28 +89,20 @@ NSArray *comments;
     [super viewDidUnload];
 }
 
-#pragma mark - UITextFieldDelegate methods
-- (void)textFieldDidBeginEditing:(UITextField *)textField
+- (void)shiftTextFieldDown
 {
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.3]; // if you want to slide up the view
     CGRect commentViewRect = self.commentView.frame;
-    commentViewRect.origin.y -= kOFFSET_FOR_KEYBOARD;
+    commentViewRect.origin.y += kOFFSET_FOR_KEYBOARD;
     self.commentView.frame = commentViewRect;
     [UIView commitAnimations];
 }
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    [self shiftTextFieldDown];
-    [self.commentTextField resignFirstResponder];
-    return YES;
-}
-
 - (IBAction)postCommentButtonAction:(id)sender {
     if ([self.commentTextField.text length] == 0) return;
-
-    // Save the comment
+    
+    // Create the comment object and save
     PFObject *comment = [PFObject objectWithClassName:kCommentClassKey];
     [comment setObject:self.postId forKey:kCommentPostKey];
     [comment setObject:[PFUser currentUser] forKey:kCommentCommenterKey];
@@ -133,15 +122,26 @@ NSArray *comments;
     [self.commentTextField resignFirstResponder];
 }
 
-- (void)shiftTextFieldDown
+#pragma mark - UITextFieldDelegate methods
+- (void)textFieldDidBeginEditing:(UITextField *)textField
 {
+    // Animate the text field container to slide up to above the appearing keyboard
     [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:0.3]; // if you want to slide up the view
+    [UIView setAnimationDuration:0.3];
     CGRect commentViewRect = self.commentView.frame;
-    commentViewRect.origin.y += kOFFSET_FOR_KEYBOARD;
+    commentViewRect.origin.y -= kOFFSET_FOR_KEYBOARD;
     self.commentView.frame = commentViewRect;
     [UIView commitAnimations];
 }
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    // slide the text field container back down
+    [self shiftTextFieldDown];
+    [self.commentTextField resignFirstResponder];
+    return YES;
+}
+
 
 #pragma mark - UITableViewDataSourceDelegate methods
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -160,13 +160,14 @@ NSArray *comments;
     static NSString *CellIdentifier = @"CommentCell";
     CommentCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    // Configure the cell...
+    // Configure the cell
     if (cell == nil) {
-        // Create the cell and add the labels
+        // Create the cell
         cell = [[CommentCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         [cell setSelectionStyle:UITableViewCellSelectionStyleGray];
     }
     
+    // Find the corresponding comment for the given cell row
     PFObject *comment = [comments objectAtIndex:indexPath.row];
     cell.commentContentLabel.text = [comment objectForKey:kCommentContentKey];
     NSDate *now = [NSDate date];
@@ -181,15 +182,15 @@ NSArray *comments;
         cell.commentTimeDiffLabel.text = [NSString stringWithFormat:@"%d days ago",[components day]];
     }
     
-    // Get the user
+    // Get the user who made the comment
     PFUser *commenter = [comment objectForKey:kCommentCommenterKey];
     [commenter fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
         if (!error) {
-            // Show user info
+            // Show the user's information
             cell.commenterNameLabel.text = [object objectForKey:kUserNameKey];
             PFFile *photo = [object objectForKey:kUserPhotoKey];
             [photo getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-                // Show photo
+                // Show the user's thumbnail photo
                 if(!error) {
                     UIImage *image = [UIImage imageWithData:data];
                     [cell.commenterThumbnailImageView setImage:image];

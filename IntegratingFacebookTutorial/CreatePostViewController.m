@@ -1,10 +1,6 @@
-//
-//  CreatePostViewController.m
-//  IntegratingFacebookTutorial
-//
-//  Created by josephchan91 on 12/14/12.
-//
-//
+/**
+ Class for creating a new post
+ **/
 
 #import "CreatePostViewController.h"
 #import "Constants.h"
@@ -18,9 +14,9 @@
 
 @implementation CreatePostViewController
 
-NSMutableArray *friendIds;
-UIImageView *photoImageView;
-UIImage *image;
+NSMutableArray *friendIds;      // The friends chosen by the user to share with
+UIImageView *photoImageView;    // Image view for the  photo to share
+UIImage *image;                 // The image itself
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -34,7 +30,6 @@ UIImage *image;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
     
     // Add post button
     UIBarButtonItem *postButton = [[UIBarButtonItem alloc] initWithTitle:@"Post" style:UIBarButtonItemStyleBordered target:self action:@selector(postButtonTouchHandler:)];
@@ -45,7 +40,6 @@ UIImage *image;
     
     // Set up keyboard immediately
     self.shareWithFriendsTextField.delegate = self;
-    //[self.shareWithFriendsTextField becomeFirstResponder];
 }
 
 - (void)didReceiveMemoryWarning
@@ -63,10 +57,9 @@ UIImage *image;
     [super viewDidUnload];
 }
 
-#pragma mark - Photo
+#pragma mark - Photo Methods
 
-/** Add Photo Methods **/
-// Called when add photo button is clicked
+/** Called when add photo button is clicked **/
 - (IBAction)addPhotoAction:(id)sender {
     BOOL photoLibraryAvailable = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary];
     if (photoLibraryAvailable) {
@@ -74,7 +67,7 @@ UIImage *image;
     }
 }
 
-// Takes user to photo library picker
+/** Takes user to photo library picker **/
 - (BOOL)shouldStartPhotoLibraryPickerController {
     if (([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary] == NO
          && [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeSavedPhotosAlbum] == NO)) {
@@ -112,9 +105,11 @@ UIImage *image;
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
+/** Called when a photo was finally selected **/
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     [self dismissViewControllerAnimated:YES completion:NULL];
     
+    // Show the image in the view
     image = [info objectForKey:UIImagePickerControllerEditedImage];
     if (nil == photoImageView) {
         photoImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0f, 44.0f, 320.0f, 320.0f)];
@@ -122,21 +117,19 @@ UIImage *image;
     }
     [photoImageView setImage:image];
     [photoImageView setContentMode:UIViewContentModeScaleAspectFit];
-    
-    //[self.addPhotoButton setHidden:YES];
-    //[self.photoButtonContainerView setHidden:YES];
     [self.shareWithFriendsTextField resignFirstResponder];
     
     [self.view addSubview:photoImageView];
 }
 
-#pragma mark - Share With
+#pragma mark - Share With Methods
 /** UITextFieldDelegate **/
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
     return NO;
 }
 
+/** Called when a user clicks the share button **/
 - (IBAction)shareWithFriendsAction:(id)sender {
     if (self.friendPickerController == nil) {
         // Create friend picker, and get data loaded into it.
@@ -152,11 +145,11 @@ UIImage *image;
     }];
 }
 
+/** Called when a user has chosen the friends to share with **/
 - (void)facebookViewControllerDoneWasPressed:(id)sender {
     NSMutableString *text = [[NSMutableString alloc] init];
     friendIds = [NSMutableArray array];
-    // we pick up the users from the selection, and create a string that we use to update the text view
-    // at the bottom of the display; note that self.selection is a property inherited from our base class
+    // Add the friend ids to the array of friends to share with
     for (id<PF_FBGraphUser> user in self.friendPickerController.selection) {
         if ([text length]) {
             [text appendString:@", "];
@@ -164,7 +157,7 @@ UIImage *image;
         [text appendString:user.name];
         [friendIds addObject:user.id];
     }
-    
+    // Show a comma-delimited list of friends to share with
     self.shareWithFriendsTextField.text = text;
     [self handlePickerDone];
 }
@@ -174,7 +167,7 @@ UIImage *image;
     [self handlePickerDone];
 }
 
-// Search functionality for friend picker
+/** Adds a search bar to the friend picker **/
 - (void)addSearchBarToFriendPickerView
 {
     if (self.searchBar == nil) {
@@ -199,11 +192,13 @@ UIImage *image;
     }
 }
 
+/** Called for each friend in the user's list of friends to determine if it should be included in filtered results **/
 - (BOOL)friendPickerViewController:(PF_FBFriendPickerViewController *)friendPicker
                  shouldIncludeUser:(id<PF_FBGraphUser>)user
 {
     if (self.searchText && ![self.searchText isEqualToString:@""]) {
         if ([[user.name lowercaseString] hasPrefix:[self.searchText lowercaseString]]) {
+            // Include user if search key matches beginning of user's name
             return YES;
         } else {
             return NO;
@@ -214,6 +209,7 @@ UIImage *image;
     return YES;
 }
 
+/** Called when friend picker view is refreshed to show filtered friends **/
 - (void) handleSearch:(UISearchBar *)searchBar {
     self.searchText = searchBar.text;
     [self.friendPickerController updateView];
@@ -227,6 +223,7 @@ UIImage *image;
 /** UISearchBarDelegate Methods **/
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
+    // Refresh the list of friends as the user edits his search on the fly
     [self handleSearch:searchBar];
 }
 
@@ -236,17 +233,17 @@ UIImage *image;
 }
 
 #pragma mark - 
-// Send the post
+/** Called when user pressed POST button **/
 - (void)postButtonTouchHandler:(id)sender {
 
-    // Check for people to share with
+    // Check for whether the user chose any friends at all
     if ([friendIds count] == 0) {
         UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"No Friends Selected" message:@"Please select people to share with." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [message show];
         return;
     }
     
-    // Check for photo
+    // Check for whether the user chose any photo
     if (nil == image) {
         UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"No Photo Selected" message:@"Please select a photo to share." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [message show];
@@ -254,7 +251,7 @@ UIImage *image;
     }
     
     NSLog(@"Going to post photo now!");
-    // JPEG to decrease file size and enable faster uploads & downloads
+    // Convert to JPEG to decrease file size and enable faster uploads & downloads
     NSData *imageData = UIImageJPEGRepresentation(image, 0.8f);
     self.photoFile = [PFFile fileWithData:imageData];
     [self.photoFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
@@ -269,8 +266,8 @@ UIImage *image;
                 [post setObject:[PFUser currentUser] forKey:kPostPosterKey];
                 [post setObject:photo forKey:kPostPhotoKey];
                 [post saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                    // Create the feed objects for all viewers
-                    // Add self as viewer
+                    // Create the feed objects for all friends specified by the user
+                    // Add self as viewer to simplify query later on for feeds
                     [friendIds addObject:[[PFUser currentUser] objectForKey:kUserFacebookKey]];
                     NSEnumerator *e = [friendIds objectEnumerator];
                     NSString *object;
@@ -285,10 +282,8 @@ UIImage *image;
         }
     }];
     
-    
-    
+    // Pop the current CreatePostViewController
     [self.navigationController popViewControllerAnimated:YES];
-
 }
 
 

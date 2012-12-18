@@ -1,10 +1,6 @@
-//
-//  FeedViewController.m
-//  IntegratingFacebookTutorial
-//
-//  Created by josephchan91 on 12/14/12.
-//
-//
+/**
+ Class for displaying a user's feed
+ **/
 
 #import "FeedViewController.h"
 #import "FeedItemDetailViewController.h"
@@ -17,9 +13,9 @@
 
 @implementation FeedViewController
 
-NSMutableArray *feedItems;
-NSMutableData *imageData;
-NSString *facebookId;
+NSMutableArray *feedItems;  // Array of feed items to show in UITableView
+NSMutableData *imageData;   // Data to store downloaded profile picture of user for thumbnails
+NSString *facebookId;       // facebookId we GET the first time a user signs up
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -30,56 +26,42 @@ NSString *facebookId;
     return self;
 }
 
-
-- (void)viewDidAppear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
-    [super viewDidAppear:animated];
-    [self.tableView reloadData];
+    [super viewWillAppear:animated];
+    [self reloadFeed];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
  
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
-    // Add logout navigation bar button
-    UIBarButtonItem *logoutButton = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStyleBordered target:self action:@selector(logoutButtonTouchHandler:)];
-    self.navigationItem.leftBarButtonItem = logoutButton;
- 
-    if (nil != [[PFUser currentUser] objectForKey:kUserFacebookKey] && nil != [[PFUser currentUser] objectForKey:kUserPhotoKey]) {
+    // Check if the user already has his facebookId recorded
+    if (nil != [[PFUser currentUser] objectForKey:kUserFacebookKey]) {
         [self reloadFeed];
         return;
     }
-    // If this is the first time signing up, store the facebook id in the PFUser to avoid future requests
+    // If this is the first time signing up, store the facebook id in the PFUser so future GETs won't be required
     else {
         // Create request for user's facebook data
         NSString *requestPath = @"me/?fields=id,name";
         // Send request to Facebook
         PF_FBRequest *request = [PF_FBRequest requestForGraphPath:requestPath];
         [request startWithCompletionHandler:^(PF_FBRequestConnection *connection, id result, NSError *error) {
-            // handle response
+            // Handle response
             if (!error) {
                 // Parse the data received
                 NSDictionary *userData = (NSDictionary *)result;
                 facebookId = userData[@"id"];
                 NSString *name = userData[@"name"];
                 
+                // Save facebookId and name to the PFUser object
                 [[PFUser currentUser] setObject:facebookId forKey:kUserFacebookKey];
                 [[PFUser currentUser] setObject:name forKey:kUserNameKey];
                 [[PFUser currentUser] saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                    // Get feed items
-                    if (succeeded) {
-                        [self getPhotoForFacebookId:facebookId];
-                    } else {
-                        NSLog(@"Error saving user details: %@", error);
-                    }
+                    // Retrieve his facebook profile picture
+                    [self getPhotoForFacebookId:facebookId]; 
                 }];
-                
             } else if ([[[[error userInfo] objectForKey:@"error"] objectForKey:@"type"]
                         isEqualToString: @"OAuthException"]) { // Since the request failed, we can check if it was due to an invalid session
                 NSLog(@"The facebook session was invalidated");
@@ -91,13 +73,13 @@ NSString *facebookId;
     }
 }
 
+/** Requests for the user's facebook profile picture **/
 - (void)getPhotoForFacebookId:(NSString *)facebookId
 {
     // Download the user's facebook profile picture
     imageData = [[NSMutableData alloc] init]; // the data will be loaded in here
-    
+
     NSURL *pictureURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large&return_ssl_resources=1", facebookId]];
-    
     NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:pictureURL
                                                               cachePolicy:NSURLRequestUseProtocolCachePolicy
                                                           timeoutInterval:2.0f];
@@ -110,37 +92,34 @@ NSString *facebookId;
 
 #pragma mark - NSURLConnectionDelegate methods
 /* Callback delegate methods used for downloading the user's profile picture */
-
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
     // As chuncks of the image are received, we build our data file
     [imageData appendData:data];
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-    // All data has been downloaded, now we can set the image in the header image view
+    // All data has been downloaded, now we can save the photo file to the user object
     PFFile *imageFile = [PFFile fileWithData:imageData];
     [imageFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         [[PFUser currentUser] setObject:imageFile forKey:kUserPhotoKey];
-        [[PFUser currentUser] saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            if (succeeded) {
-                [self reloadFeed];
-            } else {
-                NSLog(@"Error saving user photo: %@", error);
-            }
-        }];
+        [[PFUser currentUser] saveEventually];
     }];
 }
 
 
 - (void)reloadFeed
 {
-    // Get feed items
+    // Pull all the feed items
     PFQuery *query = [PFQuery queryWithClassName:kFeedItemClassKey];
+    // Check if facebookId exists for current user
+    if (nil == [[PFUser currentUser] objectForKey:kUserFacebookKey]) {
+        return;
+    }
     [query whereKey:kFeedItemViewerKey equalTo:[[PFUser currentUser] objectForKey:kUserFacebookKey]];
     [query orderByDescending:@"createdAt"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
-            // Find succeeded
+            // Store returned objects into feed array for UITableView
             feedItems = [NSMutableArray arrayWithArray:objects];
             [self.tableView reloadData];
         } else {
@@ -156,7 +135,7 @@ NSString *facebookId;
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
+#pragma mark - UITableViewDataSource delegate methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -175,9 +154,9 @@ NSString *facebookId;
     static NSString *CellIdentifier = @"FeedItemCell";
     FeedItemCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    // Configure the cell...
+    // Configure the cell
     if (cell == nil) {
-        // Create the cell and add the labels
+        // Create the cell
         cell = [[FeedItemCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         [cell setSelectionStyle:UITableViewCellSelectionStyleGray];
     }
@@ -185,37 +164,38 @@ NSString *facebookId;
     // Set radius
     cell.cardView.layer.cornerRadius = 2;
     
-    // Get feed
+    // Get the feed item for the particular row
     PFObject *feedItem = [feedItems objectAtIndex:indexPath.row];
     PFObject *post = [feedItem objectForKey:kFeedItemPostKey];
-    // Get post
+    // Get the parent post
     [post fetchIfNeededInBackgroundWithBlock:^(PFObject *post, NSError *error) {
-        // Give cell postId
+        // Store the postId in the cell's class
         cell.postId = post.objectId;
         NSDate *now = [NSDate date];
         NSDate *created = post.createdAt;
         NSUInteger unitFlags = NSDayCalendarUnit;
         NSCalendar* calendar = [NSCalendar currentCalendar];
         NSDateComponents *components = [calendar components:unitFlags fromDate:created toDate:now options:0];
+        // Set the time difference from date of creation
         if ([components day] == 1) {
             cell.timeDiffLabel.text = [NSString stringWithFormat:@"%d day ago",[components day]];
         }
         else {
             cell.timeDiffLabel.text = [NSString stringWithFormat:@"%d days ago",[components day]];
         }
-               // Get photo
+        // Get post's photo to show
         PFObject *photo = [post objectForKey:kPostPhotoKey];
         [photo fetchIfNeededInBackgroundWithBlock:^(PFObject *photo, NSError *error) {
-            // Get user
+            // Get the user who created the post
             if (!error) {
                 PFObject *user = [photo objectForKey:kPhotoOwnerKey];
                 [user fetchIfNeededInBackgroundWithBlock:^(PFObject *user, NSError *error) {
-                    // Show info
+                    // Display the user's information
                     if (!error) {
                         cell.posterNameLabel.text = [user objectForKey:kUserNameKey];
                         PFFile *thumbnailFile = [user objectForKey:kUserPhotoKey];
                         [thumbnailFile getDataInBackgroundWithBlock:^(NSData *thumbnail, NSError *error) {
-                            // Show thumbnail
+                            // Show the user's thumbnail photo
                             if (!error) {
                                 UIImage *image = [UIImage imageWithData:thumbnail];
                                 [cell.posterThumbnailImageView setImage:image];
@@ -224,10 +204,10 @@ NSString *facebookId;
                         }];
                     }
                 }];
-                // Get image
+                // Get the actual image file
                 PFFile *imageFile = [photo objectForKey:kPhotoImageKey];
                 [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-                    // Show feed photo
+                    // Show the photo
                     if (!error) {
                         UIImage *image = [UIImage imageWithData:data];
                         [cell.feedPhotoImageView setImage:image];
@@ -241,22 +221,10 @@ NSString *facebookId;
     return cell;
 }
 
-#pragma mark - Table view delegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     ; *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
-}
-
 #pragma mark - 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    // Provide the FeedViewController all the necessary data associated with the post it is going to display
     if ([[segue identifier] isEqualToString:@"showFeedItemDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         FeedItemCell *cell = (FeedItemCell*)[self.tableView cellForRowAtIndexPath:indexPath];
@@ -271,6 +239,7 @@ NSString *facebookId;
     }
 }
 
+/** Logout button which isn't visible; we've replaced it with a refresh button **/
 - (void)logoutButtonTouchHandler:(id)sender {
     // Logout user, this automatically clears the cache
     [PFUser logOut];
@@ -279,8 +248,14 @@ NSString *facebookId;
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
+/** Action for user to create a new post **/
 - (IBAction)createPostButtonTouchHandler:(id)sender {
     [self performSegueWithIdentifier:@"CreatePostViewControllerSegue" sender:self];
+}
+
+/** Action to reload the feed **/
+- (IBAction)refreshFeedAction:(id)sender {
+    [self reloadFeed];
 }
 
 
