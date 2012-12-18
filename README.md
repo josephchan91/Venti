@@ -1,5 +1,3 @@
-README
-
 Venti
 A private and social sharing experience for all the stuff you would never put up on Facebook. Logo is a bit too cute; suggestions welcome. 
 
